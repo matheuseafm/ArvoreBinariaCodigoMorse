@@ -127,23 +127,41 @@ class ArvoreBinariaMorse {
         return '\0'; // Retorna vazio se o código não é válido
     }
 
-    // Método para exibir a árvore
-    public void exibir() {
-        exibirRecursivo(raiz, 0);
+// Método para exibir a árvore
+public void exibir() {
+    if (raiz != null) {
+        // Exibe a raiz como ponto inicial
+        System.out.println("Raiz");
+        exibirRecursivo(raiz, "", true);
+    } else {
+        System.out.println("Árvore vazia.");
     }
+}
 
-    private void exibirRecursivo(Node node, int nivel) {
-        if (node != null) {
-            if (node.caractere != '\0') {
-                for (int i = 0; i < nivel; i++) {
-                    System.out.print("    "); // Indenta
-                }
-                System.out.println(node.caractere);
-            }
-            exibirRecursivo(node.filhoEsquerdo, nivel + 1); // Exibe a subárvore esquerda
-            exibirRecursivo(node.filhoDireito, nivel + 1); // Exibe a subárvore direita
+// Método recursivo para exibir a árvore de forma visual
+private void exibirRecursivo(Node node, String prefixo, boolean isUltimo) {
+    if (node != null) {
+        // Exibe o nó atual
+        if (node.caractere != '\0') {  // Só exibe se o nó tiver um caractere válido
+            System.out.println(prefixo + (isUltimo ? "└── " : "├── ") + node.caractere);
+        }
+
+        // Ajusta o prefixo para os filhos
+        String novoPrefixo = prefixo + (isUltimo ? "    " : "│   ");
+
+        // Verifica se há filhos para exibir
+        if (node.filhoEsquerdo != null || node.filhoDireito != null) {
+            // Exibe o filho esquerdo
+            exibirRecursivo(node.filhoEsquerdo, novoPrefixo, node.filhoDireito == null);
+            // Exibe o filho direito
+            exibirRecursivo(node.filhoDireito, novoPrefixo, true);
         }
     }
+}
+
+
+
+
 
     // Método principal para executar o programa
     public static void main(String[] args) {
