@@ -1,4 +1,4 @@
-Visão Geral
+#Visão Geral
 A classe ArvoreBinariaMorse implementa uma árvore binária que mapeia caracteres alfabéticos e numéricos para seus respectivos códigos Morse. Ela permite que os usuários convertam texto para código Morse e vice-versa.
 
 Estruturas de Dados
